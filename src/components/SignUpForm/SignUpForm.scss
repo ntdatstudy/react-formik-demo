@@ -1,0 +1,40 @@
+.signup-form {
+    min-width: 400px;
+    max-width: 100%;
+    padding: 30px;
+
+    box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+
+    font-size: 0.8rem;
+
+    .form-group {
+        position: relative;
+        
+        .form-label {
+            position: absolute;
+            padding: 0 5px;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        .form-control {
+            &[value=""] {
+                &+ .form-label {
+                    top: 10px;
+                    left: 5px;
+                }
+            }
+            &:focus, &.error, &:not([value=""]) {
+                box-shadow: none;
+                border: 1px solid #ced4da;
+
+                &+ .form-label {
+                    font-size: 0.7rem;
+                    top: -7px;
+                    left: 10px;
+                }
+            }
+        }
+    }
+}
