@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Spinner } from 'react-bootstrap';
 
 import './SignUpForm.scss';
 
@@ -28,10 +28,11 @@ const SignUpForm = () => {
             .required('Password is required.'),
     });
 
-    const handleSubmit = (values, { setSubmitting }) => {
+    const handleSubmit = (values, { setSubmitting, resetForm }) => {
         setTimeout(() => {
             console.log(values);
             setSubmitting(false);
+            resetForm();
         }, 1000);
     }
 
@@ -66,7 +67,10 @@ const SignUpForm = () => {
                         <Form.Label>Password</Form.Label>
                         <ErrorMessage className="error-input" component="span" name="password" />
                     </Form.Group>
-                    <Button type="submit">Sign Up</Button>
+                    <Button type="submit">
+                        {formik.isSubmitting && <Spinner className="mb-1 mr-2" size="sm" animation="border" />}
+                        Sign Up
+                    </Button>
                 </Form>
             )}
         </Formik>
